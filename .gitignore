@@ -1,0 +1,31 @@
+
+# Исполняемые файлы
+*.exe
+*.out
+*.o
+*.obj
+*.dll
+*.so
+*.a
+
+# Результат сборки проекта
+phonebook
+build/
+dist/
+
+# Настройки Visual Studio Code
+.vscode/
+
+# Настройки Visual Studio
+.vs/
+*.suo
+*.user
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Временные файлы редакторов
+*.tmp
+*.bak
+*~
