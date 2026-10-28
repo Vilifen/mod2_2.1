@@ -1,4 +1,3 @@
-
 #include "PhoneBook.h"
 
 #include <stdio.h>
@@ -10,7 +9,6 @@
 Phone_Book phone_book[N] = {0};
 int arr_size = 0;
 
-/* Чтение строки с пробелами */
 static void ReadLine(char* line, size_t size)
 {
     if (fgets(line, (int)size, stdin) == NULL)
@@ -33,7 +31,6 @@ static void ReadLine(char* line, size_t size)
         }
     }
 
-    /* Убираем возврат каретки */
     len = strlen(line);
     if (len > 0 && line[len - 1] == '\r')
     {
@@ -41,7 +38,6 @@ static void ReadLine(char* line, size_t size)
     }
 }
 
-/* Безопасный ввод целого числа */
 static int ReadInt(const char* prompt)
 {
     char line[LINE_SIZE];
@@ -74,7 +70,6 @@ static int ReadInt(const char* prompt)
     }
 }
 
-/* Проверка уникальности ID */
 static int ID_Exists(int id, int except_index)
 {
     for (int i = 0; i < arr_size; i++)
@@ -117,7 +112,6 @@ int Enter_ID(void)
     return EnterUniqueID(-1);
 }
 
-/* Ввод одного поля человека */
 void Enter_Man(char* line, const char* data, int required)
 {
     while (1)
@@ -145,7 +139,6 @@ void Enter_Man(char* line, const char* data, int required)
     }
 }
 
-/* Ввод нескольких значений: телефонов, почты и т. д. */
 void Enter_Contact(char contact_arr[N][LINE_SIZE],
                    const char* data)
 {
@@ -170,7 +163,6 @@ void Enter_Contact(char contact_arr[N][LINE_SIZE],
     }
 }
 
-/* Инициализация данных человека */
 Man Man_Init(void)
 {
     Man man = {0};
@@ -186,7 +178,6 @@ Man Man_Init(void)
     return man;
 }
 
-/* Инициализация контактной информации */
 Contact Contact_Init(void)
 {
     Contact contact = {0};
@@ -199,7 +190,6 @@ Contact Contact_Init(void)
     return contact;
 }
 
-/* Добавление контакта */
 int Insert(void)
 {
     if (arr_size >= N)
@@ -221,7 +211,6 @@ int Insert(void)
     return arr_size;
 }
 
-/* Поиск контакта по ID */
 int Find(int num_id)
 {
     for (int i = 0; i < arr_size; i++)
@@ -236,7 +225,6 @@ int Find(int num_id)
     return -1;
 }
 
-/* Редактирование контакта */
 int Redact(int index)
 {
     if (index < 0 || index >= arr_size)
@@ -331,7 +319,6 @@ int Redact(int index)
     return 1;
 }
 
-/* Удаление контакта */
 int Delete(int index)
 {
     if (index < 0 || index >= arr_size)
@@ -346,7 +333,6 @@ int Delete(int index)
 
     arr_size--;
 
-    /* Очищаем последнюю занятую ранее ячейку */
     memset(&phone_book[arr_size], 0, sizeof(Phone_Book));
 
     printf("Контакт успешно удалён!\n");
@@ -354,7 +340,6 @@ int Delete(int index)
     return arr_size;
 }
 
-/* Печать списка контактов */
 void Print(void)
 {
     if (arr_size == 0)
@@ -372,7 +357,6 @@ void Print(void)
     }
 }
 
-/* Печать одного контакта */
 void Print_Line(int i)
 {
     printf("\nID: %d\n", phone_book[i].man.id);
@@ -395,7 +379,6 @@ void Print_Line(int i)
                   "Профили в мессенджерах");
 }
 
-/* Печать нескольких значений одного типа */
 void Print_Contact(char contact_arr[N][LINE_SIZE],
                    const char* data)
 {

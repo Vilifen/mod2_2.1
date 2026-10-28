@@ -1,4 +1,3 @@
-
 #include "PhoneBook.h"
 
 #include <stdio.h>
@@ -16,7 +15,7 @@ static int ReadMenuChoice(void)
 
         if (fgets(line, sizeof(line), stdin) == NULL)
         {
-            return 4;
+            return 6;
         }
 
         value = strtol(line, &end, 10);
@@ -28,12 +27,12 @@ static int ReadMenuChoice(void)
         }
 
         if (line[0] != '\0' && *end == '\0' &&
-            value >= 1 && value <= 4)
+            value >= 1 && value <= 6)
         {
             return (int)value;
         }
 
-        printf("Введите число от 1 до 4.\n");
+        printf("Введите число от 1 до 6.\n");
     }
 }
 
@@ -80,7 +79,9 @@ static void Menu(void)
     printf("1 - Добавить контакт\n");
     printf("2 - Редактировать контакт\n");
     printf("3 - Удалить контакт\n");
-    printf("4 - Выход\n");
+    printf("4 - Вывести контакт по ID\n");
+    printf("5 - Вывести весь список контактов\n");
+    printf("6 - Выход\n");
 
     choice = ReadMenuChoice();
 
@@ -133,6 +134,31 @@ static void Menu(void)
             break;
 
         case 4:
+            if (arr_size == 0)
+            {
+                printf("Телефонная книга пуста.\n");
+                break;
+            }
+
+            num_id = ReadID();
+            index = Find(num_id);
+
+            if (index == -1)
+            {
+                printf("Контакт с таким ID не найден.\n");
+            }
+            else
+            {
+                Print_Line(index);
+            }
+
+            break;
+
+        case 5:
+            Print();
+            break;
+
+        case 6:
             exit(EXIT_SUCCESS);
     }
 }
@@ -143,7 +169,6 @@ int main(void)
 
     while (1)
     {
-        Print();
         Menu();
     }
 

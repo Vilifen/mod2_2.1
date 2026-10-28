@@ -1,4 +1,3 @@
-
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
@@ -8,9 +7,9 @@
 typedef struct Man
 {
     int id;
-    char first_name[LINE_SIZE];   // Фамилия
-    char second_name[LINE_SIZE];  // Имя
-    char third_name[LINE_SIZE];   // Отчество
+    char first_name[LINE_SIZE];
+    char second_name[LINE_SIZE];
+    char third_name[LINE_SIZE];
     char place_of_work[LINE_SIZE];
     char post[LINE_SIZE];
 } Man;
